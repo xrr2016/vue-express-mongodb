@@ -1,3 +1,3 @@
-export default {
-  mongndb : "mongodb://localhost:27107/users"
+module.exports =  {
+  mongodb : "mongodb://localhost:27017/movielist"
 }
