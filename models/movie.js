@@ -5,10 +5,12 @@ const movieSchema = mongoose.Schema({
   year : String,
   score : Number,
   introduction : String,
-  created_at : { type : Date, default : Date.now }
+  actors : Array,
+  created_at : { type : Date, default : Date.now },
+  update_at : { type : Date, default : Date.now }
 })
 
-const Movie = module.exports = mongoose.model('Movie',movieSchema)
+const Movie =  mongoose.model('Movie',movieSchema)
 
 const addMovie = function(movie,cb){
   Movie.create(movie,cb)
@@ -39,6 +41,7 @@ const getMovies = function(cb,limit) {
 }
 
 module.exports = {
+  Movie,
   addMovie,
   getMovies,
   updateMovie,
