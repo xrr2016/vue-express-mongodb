@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <h2 class="md-dispaly-4 title">{{ title }}</h2> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+    return {
+      title  : 'Movie List'
+    }
+  }
 }
 </script>
 
@@ -17,7 +22,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.title{
+  letter-spacing: 1px;
 }
 </style>

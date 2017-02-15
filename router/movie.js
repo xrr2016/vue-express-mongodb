@@ -3,7 +3,7 @@ const router = express.Router()
 const Movie = require('../models/movie')
 
 // 查询所有电影
-router.get('/movies', (req, res) => {
+router.get('/movie', (req, res) => {
   Movie.find({})
        .sort({ update_at : -1})
        .then(movies => {
