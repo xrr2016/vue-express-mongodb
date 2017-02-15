@@ -13,17 +13,21 @@ router.get('/movies', (req, res) => {
          res.json(err)
        })
 })
-// 查询单个电影
-router.get('/movies/:id', (req, res) => {
-  Movie.findOne({
-      _id: req.params.id
-    })
+// 通过ObjectId查询单个电影
+router.get('/movie/:id', (req, res) => {
+  Movie.findById(req.params.id)
     .then(movie => {
       res.json(movie)
     })
     .catch(err => {
       res.json(err)
     })
+})
+//通过电影的title查询单个电影
+router.get('/movie/:title',(req,res) => {
+  Movie.find({tile:req.params.title})
+       .then(movie => res.json(movie))
+       .catch(err => res.json(err))
 })
 // 添加一部电影
 router.post('/movie', (req, res) => {
@@ -51,7 +55,7 @@ router.post('/movie', (req, res) => {
   // })
 })
 //更新一部电影
-router.put('/movies/:id',(req,res) => {
+router.put('/movie/:id',(req,res) => {
   Movie.findOneAndUpdate({ _id : req.params.id}
        ,{ $set : { title: req.body.title,
          year : req.body.year,
@@ -63,7 +67,7 @@ router.put('/movies/:id',(req,res) => {
        .catch(err => res.json(err))
 })
 //删除一部电影
-router.delete('/movies/:id',(req,res) => {
+router.delete('/movie/:id',(req,res) => {
   Movie.findOneAndRemove({
         _id : req.params.id
         })
