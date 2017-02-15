@@ -5,12 +5,13 @@ const Movie = require('../models/movie')
 // 查询所有电影
 router.get('/movies', (req, res) => {
   Movie.find({})
-    .then(movies => {
-      res.json(movies)
-    })
-    .catch(err => {
-      res.json(err)
-    })
+       .sort({ update_at : -1})
+       .then(movies => {
+         res.json(movies)
+       })
+       .catch(err => {
+         res.json(err)
+       })
 })
 // 查询单个电影
 router.get('/movies/:id', (req, res) => {
@@ -48,6 +49,26 @@ router.post('/movie', (req, res) => {
   //     res.json(movie)
   //   }
   // })
+})
+//更新一部电影
+router.put('/movies/:id',(req,res) => {
+  Movie.findOneAndUpdate({ _id : req.params.id}
+       ,{ $set : { title: req.body.title,
+         year : req.body.year,
+         poster : req.body.poster,
+         introduction : req.body.introduction }},{
+           new : true
+         })
+       .then(movie => res.json(movie))
+       .catch(err => res.json(err))
+})
+//删除一部电影
+router.delete('/movies/:id',(req,res) => {
+  Movie.findOneAndRemove({
+        _id : req.params.id
+        })
+       .then(movie => res.send(`${movie.title}删除成功`))
+       .catch(err => res.json(err))
 })
 
 module.exports = router
