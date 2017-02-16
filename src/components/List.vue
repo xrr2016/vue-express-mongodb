@@ -29,30 +29,38 @@
           </mu-tr>
         </mu-tbody>
     </mu-table>
-    <mu-float-button icon="add" class="add-movie-btn"/>
+    <mu-float-button icon="add" class="add-movie-btn" @click="addMovie"/>
+    <vodal :show="showModal" animation="slideDown" @hide="show = false" :closeButton="false">
+
+    </vodal>
   </div>
 </template>
 
 <script>
 export default {
-  created(){
+  created() {
     this.getMovies()
   },
-  data(){
+  components:{},
+  data() {
     return {
-        movies : []
+      movies: [],
+      showModal : false
     }
   },
-  methods:{
-    getMovies(){
+  methods: {
+    getMovies() {
       this.$http.get('/api/movie')
-           .then(res => {
-             this.movies = res.data
-           })
-           .catch(err => {
-              toastr.error(`${err.message}`,'ERROR!')
-              console.log(err)
-           })
+        .then(res => {
+          this.movies = res.data
+        })
+        .catch(err => {
+          this.toastr.error(`${err.message}`, 'ERROR!')
+          console.log(err)
+        })
+    },
+    addMovie(){
+      this.showModal = true
     }
   }
 }

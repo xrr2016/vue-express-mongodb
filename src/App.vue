@@ -2,10 +2,7 @@
   <div id="app">
     <mu-appbar>
       {{ title }}
-      <mu-icon-menu icon="menu" class="icon-menu">
-        <mu-menu-item title="Help" />
-        <mu-menu-item title="Sign out" />
-      </mu-icon-menu>
+      <mu-icon value="search" :size="24" class="search-icon"/>
     </mu-appbar>
     <router-view></router-view>
   </div>
@@ -36,8 +33,9 @@ export default {
 .title{
   letter-spacing: 1px;
 }
-.icon-menu{
+.search-icon{
   float: right;
   margin-right: 30px;
+  margin-top: 24px;
 }
 </style>
