@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <!-- <h2 class="md-dispaly-4 title">{{ title }}</h2> -->
+    <mu-appbar title="Title">
+      <mu-icon-button icon='menu' slot="left"/>
+      <mu-icon-button icon='expand_more' slot="right"/>
+    </mu-appbar>
     <router-view></router-view>
   </div>
 </template>
@@ -26,7 +29,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
 }
 .title{
   letter-spacing: 1px;

@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import App from './App'
 import toastr from 'toastr'
+import MuseUI from 'muse-ui'
 import axios from 'axios'
-import VueMaterial from 'vue-material'
 import router from './router'
-import 'vue-material/dist/vue-material.css'
-import './assets/material.font.css'
 import 'toastr/build/toastr.min.css'
+import 'muse-ui/dist/muse-ui.css'
+import './assets/icon.css'
+
+Vue.use(MuseUI)
+Vue.prototype.$http = axios
 
 toastr.options = {
   "closeButton": true,
@@ -31,8 +34,7 @@ toastr.options = {
 //   return prefix + url
 // })
 
-Vue.use(VueMaterial)
-Vue.prototype.$http = axios
+
 /* eslint-disable no-new */
 new Vue({
   created(){
