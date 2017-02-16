@@ -49,4 +49,4 @@ function fetchData(count) {
     })
 }
 
-fetchData(50)
+fetchData(5)

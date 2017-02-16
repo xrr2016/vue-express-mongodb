@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <mu-appbar title="Title">
-      <mu-icon-button icon='menu' slot="left"/>
-      <mu-icon-button icon='expand_more' slot="right"/>
+    <mu-appbar>
+      {{ title }}
+      <mu-icon-menu icon="menu" class="icon-menu">
+        <mu-menu-item title="Help" />
+        <mu-menu-item title="Sign out" />
+      </mu-icon-menu>
     </mu-appbar>
     <router-view></router-view>
   </div>
@@ -13,7 +16,7 @@ export default {
   name: 'app',
   data(){
     return {
-      title  : 'Movie List'
+      title  : '电影列表'
     }
   }
 }
@@ -32,5 +35,9 @@ export default {
 }
 .title{
   letter-spacing: 1px;
+}
+.icon-menu{
+  float: right;
+  margin-right: 30px;
 }
 </style>

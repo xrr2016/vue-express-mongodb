@@ -33,7 +33,9 @@ toastr.options = {
 //   const prefix = "https://images.weserv.nl/?url="
 //   return prefix + url
 // })
-
+Vue.filter('castsToString',(casts) => {
+  return casts.map((item) => {return item.name}).toString().replace(/\,/g,"\n")
+})
 
 /* eslint-disable no-new */
 new Vue({
