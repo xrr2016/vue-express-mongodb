@@ -32,13 +32,14 @@ module.exports = {
         target: 'http://localhost:3000',
         changeOrigin: true
       },
-      // '/api': {
-      //   target: 'http://api.douban.com/v2',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/api': ''
-      //   }
-      // }
+      '/search': {
+        target: 'http://api.douban.com/v2/movie',
+        changeOrigin: true
+      },
+      '/subject': {
+        target: 'http://api.douban.com/v2/movie',
+        changeOrigin: true
+      }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

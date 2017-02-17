@@ -1,6 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const axios = require('axios')
+const https = require('https')
 const Movie = require('../models/movie')
+const jsonBird = "https://bird.ioliu.cn/v1?url="
+const doubanMovie = "http://api.douban.com/v2/movie/search?q="
 
 // 查询所有电影
 router.get('/movie', (req, res) => {
@@ -22,12 +26,6 @@ router.get('/movie/:id', (req, res) => {
     .catch(err => {
       res.json(err)
     })
-})
-//通过电影的title查询单个电影
-router.get('/movie/:title',(req,res) => {
-  Movie.find({tile:req.params.title})
-       .then(movie => res.json(movie))
-       .catch(err => res.json(err))
 })
 // 添加一部电影
 router.post('/movie', (req, res) => {

@@ -18,6 +18,7 @@
             <mu-td style="white-space: normal;padding:12px;">{{ movie.introduction }}</mu-td>
             <mu-td class="movie-rating">{{ movie.rating }}</mu-td>
             <mu-td>
+              <mu-raised-button @click="showDetail(movie.title)" label="详细" primary/>
               <mu-raised-button @click="openEditMovieModal(movie)" label="修改" primary/>
               <mu-raised-button @click="removeMovie(movie)" label="删除" secondary/>
             </mu-td>
@@ -40,7 +41,7 @@
       <mu-text-field v-model="title" fullWidth icon="movie" label="电影名称" labelFloat/><br/>
       <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="海报地址" labelFloat/><br/>
       <mu-text-field v-model="introduction" fullWidth icon="description" label="简介" labelFloat/><br/>
-      <mu-text-field type="number" v-model="rating" fullWidth icon="star" label="评分" labelFloat/><br/>
+      <mu-text-field v-model="rating" fullWidth icon="star" label="评分" labelFloat/><br/>
       <mu-raised-button @click="closeModal" label="取消" icon="undo"  />
       <mu-raised-button @click="editMovie" label="确定" icon="check" primary/>
     </vodal>
@@ -114,9 +115,10 @@ export default {
         console.log(res.data)
         this.addMovieModal = false
         this.title = ''
-        this.rating = 0
+        this.rating = null
         this.poster = ''
         this.introduction = ''
+        this.movie_id = ''
         this.getMovies()
       })
       .catch(e => {
@@ -141,9 +143,13 @@ export default {
                 })
                 .then(res => {
                   this.toastr.success("更新电影成功!")
-                  console.log(res.data)
                   this.closeModal()
                   this.getMovies()
+                  this.title = ''
+                  this.rating = null
+                  this.poster = ''
+                  this.introduction = ''
+                  this.movie_id = ''
                 })
                 .catch(err => console.log(err))
     },
@@ -159,7 +165,10 @@ export default {
                 })
                 .catch(e => console.log(e))
     },
-    searchMovie(){}
+    searchMovie(title){},
+    showDetail(title){
+      this.$router.push(`/movie/${title}`)
+    }
   }
 }
 </script>
