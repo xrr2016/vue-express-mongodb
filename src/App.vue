@@ -55,13 +55,12 @@ export default {
   color: #fff !important;
 }
 .mu-text-field-label.float{
-  color: #fff !important;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
-.mu-text-field-input{
-  color: #fff !important;
-}
-.mu-text-field-line{
-  background-color: #f5f5f5 !important;
+
+.github-icon{
+  transform: translateY(-2px) !important;
 }
 .github-icon:hover{
   opacity: .8;

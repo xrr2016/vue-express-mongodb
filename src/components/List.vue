@@ -57,20 +57,20 @@
 export default {
   created() {
     this.getMovies()
-    document.title =  this.$route.name
+    document.title = this.$route.name
   },
-  components:{},
+  components: {},
   data() {
     return {
-      title : '',
-      poster : '',
-      rating : null,
-      introduction : '',
-      movie_id : '',
+      title: '',
+      poster: '',
+      rating: null,
+      introduction: '',
+      movie_id: '',
       movies: [],
-      addMovieModal : false,
-      editMovieModal : false,
-      showDialog : false
+      addMovieModal: false,
+      editMovieModal: false,
+      showDialog: false
     }
   },
   methods: {
@@ -85,13 +85,13 @@ export default {
           console.log(err)
         })
     },
-    closeDialog(){
+    closeDialog() {
       this.showDialog = false
     },
-    openAddMovieModal(){
+    openAddMovieModal() {
       this.addMovieModal = true
     },
-    openEditMovieModal(movie){
+    openEditMovieModal(movie) {
       this.editMovieModal = true
       this.title = movie.title
       this.rating = movie.rating
@@ -99,74 +99,79 @@ export default {
       this.poster = movie.poster
       this.movie_id = movie._id
     },
-    closeModal(){
+    closeModal() {
       this.addMovieModal = false
       this.editMovieModal = false
+      this.title = ''
+      this.rating = null
+      this.poster = ''
+      this.introduction = ''
+      this.movie_id = ''
     },
-    addMovie(){
-      this.$http.post('/api/movie',{
-        title : this.title,
-        poster : this.poster,
-        introduction : this.introduction,
-        rating : this.rating
-      })
-      .then(res => {
-        this.toastr.success('保存成功.')
-        console.log(res.data)
-        this.addMovieModal = false
-        this.title = ''
-        this.rating = null
-        this.poster = ''
-        this.introduction = ''
-        this.movie_id = ''
-        this.getMovies()
-      })
-      .catch(e => {
-        this.toastr.warn('保存失败!')
-        console.log(e)
-      })
+    addMovie() {
+      this.$http.post('/api/movie', {
+          title: this.title,
+          poster: this.poster,
+          introduction: this.introduction,
+          rating: this.rating
+        })
+        .then(res => {
+          this.toastr.success('保存成功.')
+          console.log(res.data)
+          this.addMovieModal = false
+          this.title = ''
+          this.rating = null
+          this.poster = ''
+          this.introduction = ''
+          this.movie_id = ''
+          this.getMovies()
+        })
+        .catch(e => {
+          this.toastr.warn('保存失败!')
+          console.log(e)
+        })
     },
-    cancelAddMovie(){
+    cancelAddMovie() {
       this.addMovieModal = false
       this.title = ''
       this.rating = 0
       this.poster = ''
       this.introduction = ''
     },
-    editMovie(){
+    editMovie() {
       let id = this.movie_id
-      this.$http.put(`/api/movie/${id}`,{
-                  title : this.title,
-                  poster : this.poster,
-                  introduction : this.introduction,
-                  rating : this.rating,
-                })
-                .then(res => {
-                  this.toastr.success("更新电影成功!")
-                  this.closeModal()
-                  this.getMovies()
-                  this.title = ''
-                  this.rating = null
-                  this.poster = ''
-                  this.introduction = ''
-                  this.movie_id = ''
-                })
-                .catch(err => console.log(err))
+      this.$http.put(`/api/movie/${id}`, {
+          title: this.title,
+          poster: this.poster,
+          introduction: this.introduction,
+          rating: this.rating,
+        })
+        .then(res => {
+          this.toastr.success("更新电影成功!")
+          this.closeModal()
+          this.getMovies()
+          this.title = ''
+          this.rating = null
+          this.poster = ''
+          this.introduction = ''
+          this.movie_id = ''
+        })
+        .catch(err => console.log(err))
     },
-    removeMovie(movie){
+    removeMovie(movie) {
       let id = movie._id
       this.showDialog = true
       this.$http.delete(`/api/movie/${id}`)
-                .then(res => {
-                  this.toastr.success("删除成功.")
-                  console.log(res.data)
-                  this.closeDialog()
-                  this.getMovies()
-                })
-                .catch(e => console.log(e))
+        .then(res => {
+          this.toastr.success("删除成功.")
+          console.log(res.data)
+          this.closeDialog()
+          this.getMovies()
+        })
+        .catch(e => console.log(e))
     },
-    searchMovie(title){},
-    showDetail(title){
+    searchMovie(title) {},
+    showDetail(title) {
       this.$router.push(`/movie/${title}`)
     }
   }
