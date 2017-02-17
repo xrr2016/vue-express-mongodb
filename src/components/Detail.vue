@@ -34,8 +34,6 @@ export default {
       this.$router.go(-1)
     },
     getMovie(title) {
-      // const jsonBird = "https://bird.ioliu.cn/v1?url="
-      // const doubanMovie = "http://api.douban.com/v2/movie/search?q="
       this.$http.get(`/search?q=${title}`)
         .then(res => {
           let movieId = res.data.subjects[0].id

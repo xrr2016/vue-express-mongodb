@@ -175,6 +175,6 @@ export default {
 
 <style lang="css">
   .movie-poster{
-    width: 100px;
+    width: 80px;
   }
 </style>

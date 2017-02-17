@@ -1,6 +1,7 @@
 const pkg = require('./package')
 const config = require('./config/db')
 const express = require('express')
+const favicon = require('serve-favicon')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const index = require('./router/index')
@@ -14,6 +15,7 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(favicon(__dirname + '/src/assets/logo.png'))
 app.use('/',index)
 app.use('/api',movie)
 
