@@ -29,28 +29,27 @@
     <!-- 添加电影按钮 -->
     <mu-float-button icon="add" class="add-movie-button" backgroundColor @click="openAddMovieModal"/>
     <!-- 添加电影表单 -->
-    <vodal :show="addMovieModal" animation="slideDown" :width="500" :height="400" :closeButton="false">
+    <vodal :show="addMovieModal" animation="slideDown" :width="500" :height="480" :closeButton="false">
       <mu-text-field v-model="title" fullWidth icon="movie" label="电影名称" labelFloat/><br/>
       <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="海报地址" labelFloat/><br/>
-      <mu-text-field v-model="introduction" fullWidth icon="description" label="简介" labelFloat/><br/>
+      <mu-text-field v-model="introduction"
+      multiLine :rows="2" :rowsMax="6"
+      fullWidth icon="description" label="简介" labelFloat/><br/>
       <mu-text-field v-model="rating" fullWidth icon="star" label="评分" labelFloat/><br/>
       <mu-raised-button @click="closeModal" label="取消" icon="undo"  />
       <mu-raised-button @click="addMovie" label="确定" icon="check" primary/>
     </vodal>
     <!-- 编辑电影表单 -->
-    <vodal :show="editMovieModal" animation="slideDown" :width="500" :height="400" :closeButton="false">
+    <vodal :show="editMovieModal" animation="slideDown" :width="500" :height="480" :closeButton="false">
       <mu-text-field v-model="title" fullWidth icon="movie" label="电影名称" labelFloat/><br/>
       <mu-text-field v-model="poster" fullWidth icon="picture_in_picture" label="海报地址" labelFloat/><br/>
-      <mu-text-field v-model="introduction" fullWidth icon="description" label="简介" labelFloat/><br/>
+      <mu-text-field v-model="introduction"
+      multiLine :rows="2" :rowsMax="6"
+      fullWidth icon="description" label="简介" labelFloat/><br/>
       <mu-text-field v-model="rating" fullWidth icon="star" label="评分" labelFloat/><br/>
       <mu-raised-button @click="closeModal" label="取消" icon="undo"  />
       <mu-raised-button @click="editMovie" label="确定" icon="check" primary/>
     </vodal>
-    <!-- 删除电影对话框 -->
-    <mu-dialog :open="showDialog" title="确定删除电影?" @close="closeDialog">
-     <mu-raised-button slot="actions" @click="closeDialog" label="取消"/>
-     <mu-raised-button slot="actions" primary @click="closeDialog" label="确定"/>
-   </mu-dialog>
   </div>
 </template>
 
@@ -70,8 +69,7 @@ export default {
       movie_id: '',
       movies: [],
       addMovieModal: false,
-      editMovieModal: false,
-      showDialog: false
+      editMovieModal: false
     }
   },
   methods: {
@@ -85,9 +83,6 @@ export default {
           this.toastr.error(`${err.message}`, 'ERROR!')
           console.log(err)
         })
-    },
-    closeDialog() {
-      this.showDialog = false
     },
     openAddMovieModal() {
       this.addMovieModal = true
@@ -117,7 +112,7 @@ export default {
           rating: this.rating
         })
         .then(res => {
-          this.toastr.success('保存成功.')
+          this.toastr.success('添加电影成功')
           console.log(res.data)
           this.addMovieModal = false
           this.title = ''
@@ -161,12 +156,10 @@ export default {
     },
     removeMovie(movie) {
       let id = movie._id
-      this.showDialog = true
       this.$http.delete(`/api/movie/${id}`)
         .then(res => {
           this.toastr.success("删除成功.")
           console.log(res.data)
-          this.closeDialog()
           this.getMovies()
         })
         .catch(e => console.log(e))

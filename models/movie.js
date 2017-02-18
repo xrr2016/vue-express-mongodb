@@ -9,5 +9,4 @@ const movieSchema = mongoose.Schema({
   update_at : { type : Date, default : Date.now }
 })
 
-const Movie =  mongoose.model('Movie',movieSchema)
-module.exports = Movie
+const Movie = module.exports = mongoose.model('Movie',movieSchema)
