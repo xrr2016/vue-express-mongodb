@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="detail">
+    <mu-circular-progress :size="90"/>
     <div class="detail-left">
       <img class="movie-poster"/>
     </div>
@@ -29,7 +30,7 @@ export default {
   },
   data() {
     return {
-      movie : {}
+      movie: {}
     }
   },
   methods: {
@@ -41,16 +42,16 @@ export default {
         .then(res => {
           let movieId = res.data.subjects[0].id
           this.$http.get(`/subject/${movieId}`)
-                    .then(res => {
-                      console.dir(res.data)
-                      if(!!res.data){
-                        this.movie = res.data
-                        setTimeout(()=> {
-                          document.querySelector('.movie-poster').src = this.movie.images.large
-                        },0)
-                      }
-                    })
-                    .catch(e => console.log(e))
+            .then(res => {
+              console.dir(res.data)
+              if (!!res.data) {
+                this.movie = res.data
+                setTimeout(() => {
+                  document.querySelector('.movie-poster').src = this.movie.images.large
+                }, 0)
+              }
+            })
+            .catch(e => console.log(e))
         })
         .catch(e => console.log(e))
     }
