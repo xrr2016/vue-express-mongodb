@@ -1,24 +1,26 @@
 <template lang="html">
-  <div class="detail">
-    <mu-circular-progress :size="90"/>
-    <div class="detail-left">
-      <img class="movie-poster"/>
-    </div>
-    <div class="detail-right">
-        <p class="movie-title">{{ movie.title }} <span>{{ movie.original_title}}</span></p>
-        <p class="movie-akas">别名:<span class="movie-aka" v-for="aka of movie.aka">{{aka}}</span></p>
-        <p class="movie-genres">
-          {{movie.countries.join('')}} ({{movie.year}})
-          <span  class="movie-genre" v-for="genre of movie.genres">{{genre}}</span>
-          评分: {{movie.rating.average}}
-        </p>
-        <p class="movie-directors">导演:<a :href="dir.alt" v-for="dir of movie.directors">{{dir.name}}</a></p>
-        <p class="movie-actors">
-          演员: <a v-for="actor of movie.casts" class="movie-actor" :href="actor.alt">{{actor.name}}</a>
-        </p>
-        <p class="movie-summary">{{movie.summary}}</p>
-        <mu-raised-button @click="goBack" primary>返回</mu-rasied-button>
-    </div>
+    <div>
+      <mu-circular-progress class="loading" v-if="loadingData" :size="80"/>
+      <div class="detail" v-else>
+        <div class="detail-left">
+          <img class="movie-poster"/>
+        </div>
+        <div class="detail-right">
+            <p class="movie-title">{{ movie.title }} <span>{{ movie.original_title}}</span></p>
+            <p class="movie-akas">别名:<span class="movie-aka" v-for="aka of movie.aka">{{aka}}</span></p>
+            <p class="movie-genres">
+              {{movie.countries.join('')}} ({{movie.year}})
+              <span  class="movie-genre" v-for="genre of movie.genres">{{genre}}</span>
+              评分: {{movie.rating.average}}
+            </p>
+            <p class="movie-directors">导演:<a :href="dir.alt" v-for="dir of movie.directors">{{dir.name}}</a></p>
+            <p class="movie-actors">
+              演员: <a v-for="actor of movie.casts" class="movie-actor" :href="actor.alt">{{actor.name}}</a>
+            </p>
+            <p class="movie-summary">{{movie.summary}}</p>
+            <mu-raised-button @click="goBack" primary>返回</mu-rasied-button>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -30,7 +32,8 @@ export default {
   },
   data() {
     return {
-      movie: {}
+      movie: {},
+      loadingData : true
     }
   },
   methods: {
@@ -38,6 +41,7 @@ export default {
       this.$router.go(-1)
     },
     getMovie(title) {
+      let startTime = Date.now()
       this.$http.get(`/search?q=${title}`)
         .then(res => {
           let movieId = res.data.subjects[0].id
@@ -46,9 +50,12 @@ export default {
               console.dir(res.data)
               if (!!res.data) {
                 this.movie = res.data
+                this.dataTime = Date.now() - startTime
+                console.log(this.dataTime)
                 setTimeout(() => {
                   document.querySelector('.movie-poster').src = this.movie.images.large
                 }, 0)
+                this.loadingData = false
               }
             })
             .catch(e => console.log(e))
@@ -62,6 +69,14 @@ export default {
 <style lang="css" scoped>
 a{
   color: #03a9f4;
+}
+.loading{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 .detail{
   display: flex;

@@ -22,7 +22,6 @@
     "toastr": "^2.1.2",
     "vodal": "^1.0.3",
     "vue": "^2.1.10",
-    "vue-lazy-render": "^1.0.18",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {
