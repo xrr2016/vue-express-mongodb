@@ -15,7 +15,8 @@
           <mu-tr v-for="movie of movies">
             <mu-td><img class="movie-poster" :src="movie.poster"></mu-td>
             <mu-td><h3>{{ movie.title }}</h3></mu-td>
-            <mu-td style="white-space: normal;padding:12px;">{{ movie.introduction }}</mu-td>
+            <mu-td>
+              <p class="movie-introduction">{{ movie.introduction }}</p></mu-td>
             <mu-td class="movie-rating">{{ movie.rating }}</mu-td>
             <mu-td>
               <mu-raised-button @click="showDetail(movie.title)" label="详细" primary/>
@@ -179,7 +180,22 @@ export default {
 </script>
 
 <style lang="css">
+.mu-th{
+  text-align: center !important;
+}
+.mu-td{
+  text-align: center !important;
+}
   .movie-poster{
     width: 80px;
+    padding: 4px 0;
+  }
+  .movie-introduction{
+    white-space: normal;
+    padding:4px 4px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    text-align: left;
+    text-indent: 2em;
   }
 </style>

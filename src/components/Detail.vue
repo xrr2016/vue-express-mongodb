@@ -1,26 +1,29 @@
 <template lang="html">
   <div class="detail">
-    <mu-card>
-      <mu-card-media title="Image Title" subTitle="Image Sub Title">
-        <img src="" />
-      </mu-card-media>
-      <mu-card-title title="Content Title" subTitle="Content Title"/>
-      <mu-card-text>
-        散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。
-        调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。
-        似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光，
-        找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！
-      </mu-card-text>
-      <mu-card-actions>
-        <mu-raised-button primary label="返回" @click="goBack"/>
-      </mu-card-actions>
-    </mu-card>
+    <div class="detail-left">
+      <img class="movie-poster"/>
+    </div>
+    <div class="detail-right">
+        <p class="movie-title">{{ movie.title }} <span>{{ movie.original_title}}</span></p>
+        <p class="movie-akas">别名:<span class="movie-aka" v-for="aka of movie.aka">{{aka}}</span></p>
+        <p class="movie-genres">
+          {{movie.countries.join('')}} ({{movie.year}})
+          <span  class="movie-genre" v-for="genre of movie.genres">{{genre}}</span>
+          评分: {{movie.rating.average}}
+        </p>
+        <p class="movie-directors">导演:<a :href="dir.alt" v-for="dir of movie.directors">{{dir.name}}</a></p>
+        <p class="movie-actors">
+          演员: <a v-for="actor of movie.casts" class="movie-actor" :href="actor.alt">{{actor.name}}</a>
+        </p>
+        <p class="movie-summary">{{movie.summary}}</p>
+        <mu-raised-button @click="goBack" primary>返回</mu-rasied-button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  mounted() {
+  created() {
     this.getMovie(this.$route.params.title)
     document.title = this.$route.name
   },
@@ -39,8 +42,13 @@ export default {
           let movieId = res.data.subjects[0].id
           this.$http.get(`/subject/${movieId}`)
                     .then(res => {
-                      console.log(res.data)
-                      this.movie = res.data
+                      console.dir(res.data)
+                      if(!!res.data){
+                        this.movie = res.data
+                        setTimeout(()=> {
+                          document.querySelector('.movie-poster').src = this.movie.images.large
+                        },0)
+                      }
                     })
                     .catch(e => console.log(e))
         })
@@ -50,5 +58,62 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+a{
+  color: #03a9f4;
+}
+.detail{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+}
+.detail-left{
+  padding: 16px;
+  margin-left: 80px;
+}
+.detail-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.movie-title{
+  width: 100%;
+  font-size: 24px;
+}
+.movie-actors{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.movie-actor{
+  margin-right: 12px;
+}
+.movie-genres{
+  width: 100%;
+}
+.movie-genre{
+  margin-right: 12px;
+}
+.movie-poster{
+  width: 300px;
+  height: 450px;
+}
+.movie-directors{
+  width: 100%;
+}
+.movie-summary{
+  letter-spacing: 1px;
+  text-indent: 2em;
+  line-height: 1.4;
+  font-size: 16px;
+}
+.movie-akas{
+  width: 100%;
+}
+.movie-aka{
+  margin-right: 12px;
+}
 </style>

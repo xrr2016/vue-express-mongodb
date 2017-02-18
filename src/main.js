@@ -38,7 +38,9 @@ toastr.options = {
 //   return prefix + url
 // })
 Vue.filter('castsToString',(casts) => {
-  return casts.map((item) => {return item.name}).toString().replace(/\,/g,"\n")
+  return casts.map(item => {
+    return item.name
+  })
 })
 
 /* eslint-disable no-new */
