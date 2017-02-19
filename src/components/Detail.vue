@@ -41,17 +41,15 @@ export default {
       this.$router.go(-1)
     },
     getMovie(title) {
-      const jsonBird = "https://bird.ioliu.cn/v1?url="
-      const doubanSearch = 'http://api.douban.com/v2/movie/search?q='
-      this.$http.get(`${jsonBird}${doubanSearch}${title}`)
+      // 由于自定的movie模型没有足够的数据,故用前端请求豆瓣的api
+      let searchUrl = 'https://bird.ioliu.cn/v1/?url=http://api.douban.com/v2/movie/search?q='
+      this.$http.get(`${searchUrl}${title}`)
         .then(res => {
             console.log(res.data)
-            const doubanMovie = 'http://api.douban.com/v2/movie/subject/'
-            setTimeout(() => {
-              let movieId = res.data.subjects[0].id
-            },0)
+            let movieUrl = 'https://bird.ioliu.cn/v1/?url=http://api.douban.com/v2/movie/subject'
+            let movieId = res.data.subjects[0].id
             if(!!movieId){
-              this.$http.get(`${jsonBird}${doubanMovie}${movieId}`)
+              this.$http.get(`${movieUrl}/${movieId}`)
               .then(res => {
                 console.dir(res.data)
                 if (!!res.data) {

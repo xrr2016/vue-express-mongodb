@@ -1,10 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const axios = require('axios')
-const https = require('https')
 const Movie = require('../models/movie')
-const jsonBird = "https://bird.ioliu.cn/v1?url="
-const doubanMovie = "http://api.douban.com/v2/movie/search?q="
 
 // 查询所有电影
 router.get('/movie', (req, res) => {

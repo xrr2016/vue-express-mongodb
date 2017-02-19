@@ -73,6 +73,7 @@ export default {
     }
   },
   methods: {
+    // 获取所有电影的方法
     getMovies() {
       this.$http.get('/api/movie')
         .then(res => {
@@ -84,9 +85,11 @@ export default {
           console.log(err)
         })
     },
+    // 打开添加电影modal的方法
     openAddMovieModal() {
       this.addMovieModal = true
     },
+    // 打开编辑电影modal的方法
     openEditMovieModal(movie) {
       this.editMovieModal = true
       this.title = movie.title
@@ -95,6 +98,7 @@ export default {
       this.poster = movie.poster
       this.movie_id = movie._id
     },
+    // 关闭modal的方法
     closeModal() {
       this.addMovieModal = false
       this.editMovieModal = false
@@ -104,6 +108,7 @@ export default {
       this.introduction = ''
       this.movie_id = ''
     },
+    // 访问后端添加电影的方法
     addMovie() {
       this.$http.post('/api/movie', {
           title: this.title,
@@ -127,6 +132,7 @@ export default {
           console.log(e)
         })
     },
+    // 取消添加电影的方法
     cancelAddMovie() {
       this.addMovieModal = false
       this.title = ''
@@ -134,6 +140,7 @@ export default {
       this.poster = ''
       this.introduction = ''
     },
+    // 访问后端编辑电影的方法
     editMovie() {
       let id = this.movie_id
       this.$http.put(`/api/movie/${id}`, {
@@ -154,6 +161,7 @@ export default {
         })
         .catch(err => console.log(err))
     },
+    // 删除电影的方法
     removeMovie(movie) {
       let id = movie._id
       this.$http.delete(`/api/movie/${id}`)
@@ -164,7 +172,7 @@ export default {
         })
         .catch(e => console.log(e))
     },
-    searchMovie(title) {},
+    // 跳转到电影详情页的方法
     showDetail(title) {
       this.$router.push(`/movie/${title}`)
     }
