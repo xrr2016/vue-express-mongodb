@@ -34,6 +34,8 @@ npm run dev
 ```  
 看到8080端口出现vuejs的欢迎界面表示成功    
 
+接着把本地的mongodb服务跑起来,参考这篇[教程](https://segmentfault.com/a/1190000004868504)
+
 ## 后端开发
 不过首先把后端的服务搭好,方便以后前端调用,使用npm安装express,mongoose等必须的依赖即可,暂时不考虑验证等东西.
 ```bash
@@ -51,11 +53,16 @@ app.listen(3000,() => {
 })
 ```
 浏览器访问localhost:3000,出现res.send()的内容即表示成功.
+
 然后添加需要的数据,新建一个models目录放数据模型,mongoose的每个数据model需要一个schema生成,
+
 新建movie.js文件或者其他的数据模型,用来提供基础数据.
+
 ![movie.js](./demo/moviejs.png)
+
 定义了title,poster,rating,introduction,created_at,update_at几个基本信息,最后将model导出即可.
 
+接着将对数据CURD操作的几个路由写出来
 ## 前端开发
 
 ## 结语

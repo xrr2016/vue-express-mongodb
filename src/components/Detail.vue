@@ -41,24 +41,29 @@ export default {
       this.$router.go(-1)
     },
     getMovie(title) {
-      let startTime = Date.now()
-      this.$http.get(`/search?q=${title}`)
+      const jsonBird = "https://bird.ioliu.cn/v1?url="
+      const doubanSearch = 'http://api.douban.com/v2/movie/search?q='
+      this.$http.get(`${jsonBird}${doubanSearch}${title}`)
         .then(res => {
-          let movieId = res.data.subjects[0].id
-          this.$http.get(`/subject/${movieId}`)
-            .then(res => {
-              console.dir(res.data)
-              if (!!res.data) {
-                this.movie = res.data
-                this.dataTime = Date.now() - startTime
-                console.log(this.dataTime)
-                setTimeout(() => {
-                  document.querySelector('.movie-poster').src = this.movie.images.large
-                }, 0)
-                this.loadingData = false
-              }
-            })
-            .catch(e => console.log(e))
+            console.log(res.data)
+            const doubanMovie = 'http://api.douban.com/v2/movie/subject/'
+            setTimeout(() => {
+              let movieId = res.data.subjects[0].id
+            },0)
+            if(!!movieId){
+              this.$http.get(`${jsonBird}${doubanMovie}${movieId}`)
+              .then(res => {
+                console.dir(res.data)
+                if (!!res.data) {
+                  this.movie = res.data
+                  setTimeout(()=>{
+                    document.querySelector('.movie-poster').src = this.movie.images.large
+                  },0)
+                  this.loadingData = false
+                }
+              })
+              .catch(e => console.log(e))
+            }
         })
         .catch(e => console.log(e))
     }
