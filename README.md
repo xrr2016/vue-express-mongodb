@@ -117,12 +117,14 @@ List就是首页的列表,Detail是电影的详细数据,然后把前端路由�
 只有两个组件之间切换,然后把<router-view></router-view>放到App.vue里面就可以了.
 
 前端路由
+
 ![index.js](./demo/router.png)
 
 数据获取,由于我们的express是在3000端口启动的,而前端开发在8080端口,由于跨域所以要配置好vue-cli的proxyTable
 选项,位于config/index.js,改写proxyTable.
 
 ![proxyTable](./demo/proxyTabel.png)
+
 这样当在前端用axios访问 '/api' 的时候,就会被代理到 'http://localhost:3000/api',从而获得需要的数据.
 
 能够获取到数据之后就是编写界面了,由于用了muse-ui组件库,所以只要按着文档写一般不会错,要是不满意就自己搭界面.
@@ -130,8 +132,10 @@ List就是首页的列表,Detail是电影的详细数据,然后把前端路由�
 主要就是用ajax访问后端对数据增删改查的路由,将这些操作都写在组件的methods对象里面，写好主要的方法后，将方法
 
 ......
+
 ![listMethods01](./demo/listMethods01.png)
 ![listMethods02](./demo/listMethods02.png)
+
 ......
 
 用vuejs里的写法,绑定到对应的按钮上
@@ -158,6 +162,7 @@ app.use(express.static('dist'))
 ```
 
 最后案例完成后的目录结构就是这样.
+
 ![project](./demo/project.png)
 
 
