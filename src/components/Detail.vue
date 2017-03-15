@@ -18,7 +18,7 @@
               演员: <a v-for="actor of movie.casts" class="movie-actor" :href="actor.alt">{{actor.name}}</a>
             </p>
             <p class="movie-summary">{{movie.summary}}</p>
-            <mu-raised-button @click="goBack" primary>返回</mu-rasied-button>
+            <mu-raised-button @click="goBack" primary>返回</mu-raised-button>
         </div>
       </div>
   </div>
