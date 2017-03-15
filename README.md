@@ -110,7 +110,7 @@ app.use('/api',movie)
 首先安装必要的依赖,看自己喜欢选择.
 [muse-ui](https://museui.github.io/#/index) [axios](https://github.com/mzabriskie/axios)
 ```bash
-npm install musi-ui axios --save
+npm install muse-ui axios --save
 ```
 然后把不要的文件删除,在src/components目录新建主要的两个组件List,Detail.
 List就是首页的列表,Detail是电影的详细数据,然后把前端路由写出来,在src/router建立前端路由文件,
