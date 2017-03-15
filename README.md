@@ -8,7 +8,7 @@
 [我们为什么要尝试前后端分离](https://segmentfault.com/a/1190000006240370)
 因此决定小试身手,项目中主要使用到的框架和库.
 
-> vuejs vue-router musi-ui axios express mongoose mongodb......
+> vuejs vue-router muse-ui axios express mongoose mongodb......
 
 ## 简介
 
