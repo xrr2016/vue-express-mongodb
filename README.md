@@ -1,19 +1,18 @@
-# 一个简单的前后端分离案例
+[![gitads](./demo/gitads.png)]( https://tracking.gitads.io/?campaign=gitads&repo=vue-express-mongodb&redirect=gitads.io)
 
+# 前后端分离示例
+
+一个前后端分离的案例,前端 vuejs,后端 express, 数据库 mongodb。
+使用 express 的提供api供前端调用,前端ajax请求进行对数据库的CURD操作。
 
 ## 前言
 
-在学习前端开发的过程中知了前后端分离这个概念
+在学习前端开发的过程中了解到前后端分离这个概念
 [前后分离架构的探索之路](https://segmentfault.com/a/1190000003795517)
 [我们为什么要尝试前后端分离](https://segmentfault.com/a/1190000006240370)
 因此决定小试身手,项目中主要使用到的框架和库.
 
 > vuejs vue-router muse-ui axios express mongoose mongodb......
-
-## 简介
-
-一个前后端分离的案例,前端vuejs,后端express,数据库mongodb.
-用express的提供api供前端调用,前端ajax请求进行对数据库的CURD操作.
 
 ## 效果图
 首页
@@ -38,8 +37,8 @@ vue init webpack my-project
 cd my-rpoject && npm install
 
 npm run dev
-```  
-看到8080端口出现vuejs的欢迎界面表示成功    
+```
+看到8080端口出现vuejs的欢迎界面表示成功
 
 接着把本地的mongodb服务跑起来,参考这篇[教程](https://segmentfault.com/a/1190000004868504)
 
