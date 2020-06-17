@@ -2,7 +2,7 @@
   "name": "vue-express-mongodb",
   "version": "1.0.0",
   "description": "A Vue.js Express Mongodb project",
-  "author": "xrr2016 <13286904669@163.com>",
+  "author": "xrr2016 <xiaoranran1993@outlook.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -11,12 +11,12 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": ">=0.18.1",
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "jquery": "^3.1.1",
     "keycode": "^2.1.8",
-    "mongoose": "^4.8.2",
+    "mongoose": ">=5.7.5",
     "muse-ui": "^2.0.0-rc.5",
     "serve-favicon": "^2.3.2",
     "toastr": "^2.1.2",
@@ -53,7 +53,7 @@
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.1.10",
     "webpack": "^2.2.1",
-    "webpack-bundle-analyzer": "^2.2.1",
+    "webpack-bundle-analyzer": ">=3.3.2",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
     "webpack-merge": "^2.6.1"
