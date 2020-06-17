@@ -1,4 +1,6 @@
-[![gitads](./demo/gitads.png)]( https://tracking.gitads.io/?campaign=gitads&repo=vue-express-mongodb&redirect=gitads.io)
+<a href="https://tracking.gitads.io/?campaign=gitads&repo=vue-express-mongodb&redirect=gitads.io" target="_blank">
+ <img src="./demo/gitads.png" width="720" alt="gitads" style="width: 100%;">
+</a>
 
 # 前后端分离示例
 
