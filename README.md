@@ -1,8 +1,7 @@
-<a href="https://tracking.gitads.io/?campaign=popsql&repo=vue-express-mongodb&redirect=popsql.com%2F%3Futm_source%3Dgitads" target="_blank">
- <img src="./demo/gitads.png" alt="gitads" style="width: 100%;">
+<a href="https://tracking.gitads.io/?repo=vue-express-mongodb" target="_blank">
+ <img src="https://images.gitads.io/vue-express-mongodb" alt="gitads">
 </a>
-<br><i>This advert was placed by <a href="https://tracking.gitads.io/?campaign=gitads&repo=vue-express-mongodb&redirect=gitads.io" rel="gitads">GitAds</a> </i>
-
+<br><i>This advert was placed by <a href="https://tracking.gitads.io/?repo=vue-express-mongodb" rel="gitads">GitAds</a> </i>
 
 # 前后端分离示例
 
