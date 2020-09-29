@@ -1,8 +1,3 @@
-<a href="https://tracking.gitads.io/?repo=vue-express-mongodb" target="_blank">
- <img src="https://images.gitads.io/vue-express-mongodb" alt="gitads">
-</a>
-<br><i>This advert was placed by <a href="https://tracking.gitads.io/?repo=vue-express-mongodb" rel="gitads">GitAds</a> </i>
-
 # 前后端分离示例
 
 一个前后端分离的案例,前端 vuejs,后端 express, 数据库 mongodb。
